@@ -7,7 +7,8 @@ describe('ng-require generator', function () {
 
   var appName = 'unitTestApp';
   var deps = [
-    '../../app',
+    '../../app'
+//    ,
 //    '../../../common',
 //    '../../../controller',
 //    '../../../main',
@@ -52,9 +53,14 @@ describe('ng-require generator', function () {
       'app/index.html',
       'app/robots.txt',
       'app/index.template.html',
+      'package.json',
       'bower.json',
+      '.editorconfig',
       '.jshintrc',
-      '.editorconfig'
+      'Gruntfile.js',
+      'karma.conf.js',
+      'karma-e2e.conf.js',
+      'test'
     ];
 
     this.app.run({}, function () {
@@ -77,6 +83,10 @@ describe('ng-require generator', function () {
     this.app.run({}, function () {
 
       helpers.assertFileContent('bower.json',
+        new RegExp('"name": "' + appName + '"')
+      );
+
+      helpers.assertFileContent('package.json',
         new RegExp('"name": "' + appName + '"')
       );
       

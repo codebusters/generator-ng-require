@@ -11,10 +11,19 @@ var NgRequireGenerator = yeoman.generators.Base.extend({
     this.pkg = require('../package.json');
 
     this.on('end', function () {
-      if (!this.options['skip-install']) {
-        this.installDependencies();
-      }
+
+      this.installDependencies({
+        bower: true,
+        npm: true,
+        skipInstall: this.options['skip-install'],
+        skipMessage: this.options['skip-install'],
+        callback: function () {
+          console.log('Everything is ready!, just run grunt serve.');
+        }
+      });
+      
     });
+    
   },
 
   askFor: function () {
@@ -26,10 +35,10 @@ var NgRequireGenerator = yeoman.generators.Base.extend({
     }
 
     var prompts = [{
-      type: 'confirm',
+      type: 'input',
       name: 'appName',
       message: 'How would you like to name your application?',
-      default: true
+      default: 'codeBusters'
     }];
 
     this.prompt(prompts, function (props) {
@@ -41,12 +50,20 @@ var NgRequireGenerator = yeoman.generators.Base.extend({
 
   app: function () {
 
-    var context = {
-      appName: this.appName
-    };
+//    var context = {
+//      appName: this.appName
+//    };
 
     this.copy('_package.json', 'package.json');
-    this.template("_bower.json", "bower.json", context);
+//    this.template('_package.json', 'package.json', context);
+    this.copy('_bower.json', 'bower.json');
+//    this.template("_bower.json", "bower.json", context);
+    this.copy('editorconfig', '.editorconfig');
+    this.copy('jshintrc', '.jshintrc');
+    this.copy('_gruntfile.js', 'Gruntfile.js');
+    this.copy('_karma.conf.js', 'karma.conf.js');
+    this.copy('_karma-e2e.conf.js', 'karma-e2e.conf.js');
+
   },
 
   scaffoldFolders: function(){
@@ -59,8 +76,7 @@ var NgRequireGenerator = yeoman.generators.Base.extend({
     this.directory('_app/_images', 'app/images');
     // TODO add assert for inner files in test
     this.directory('_app/_scripts', 'app/scripts');
-//    this.mkdir('app/scripts');
-//    this.mkdir('app/scripts/modules');
+    this.mkdir('test');
   },
 
   appFiles: function () {
@@ -68,7 +84,7 @@ var NgRequireGenerator = yeoman.generators.Base.extend({
     // TODO for now only copying
     this.copy('_app/_404.html', 'app/404.html');
     this.copy('_app/_favicon.ico', 'app/favicon.ico');
-    this.copy('_app/_.htaccess', 'app/.htaccess');
+    this.copy('_app/htaccess', 'app/.htaccess');
     this.copy('_app/_index.html', 'app/index.html');
     this.copy('_app/_robots.txt', 'app/robots.txt');
     this.copy('_app/_index.template.html', 'app/index.template.html');
@@ -76,8 +92,6 @@ var NgRequireGenerator = yeoman.generators.Base.extend({
   },
 
   projectFiles: function () {
-    this.copy('editorconfig', '.editorconfig');
-    this.copy('jshintrc', '.jshintrc');
   }
 });
 
