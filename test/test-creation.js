@@ -25,9 +25,14 @@ describe('ng-require generator', function () {
 
       this.app = helpers.createGenerator('ng-require:app', deps, [appName], {
         'appPath': '../../app',
-        'skip-welcome-message': true
+        'skip-welcome-message': true, 
+        'skip-install': true
       });
-      
+
+      helpers.mockPrompt(this.app, {
+        'appName': appName
+      });
+
       done();
     }.bind(this));
   });
@@ -40,20 +45,34 @@ describe('ng-require generator', function () {
       '.editorconfig'
     ];
 
-    helpers.mockPrompt(this.app, {
-      'someOption': true
-    });
-    this.app.options['skip-install'] = true;
     this.app.run({}, function () {
       helpers.assertFile(expected);
       done();
     });
 
   });
-
+/*
   it('requests appName', function (done) {
 
     // TODO
+
+  });
+*/
+  it('applies appName to files', function (done) {
+
+//    console.log('hello!');
+    
+    this.app.run({}, function () {
+
+      helpers.assertFileContent('bower.json',
+        new RegExp('"name": "' + appName + '"')
+      );
+      
+      done();
+    });
+
+
+//    assert.fileContent('bower.json', /unitTestApp/);
 
   });
 

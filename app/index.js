@@ -44,7 +44,7 @@ var NgRequireGenerator = yeoman.generators.Base.extend({
     this.mkdir('app/templates');
 
     this.copy('_package.json', 'package.json');
-    this.template("_bower.json", "bower.json", this.appName);
+    this.template("_bower.json", "bower.json", {appName: this.appName});
   },
 
 //  scaffoldFolders: function(){
