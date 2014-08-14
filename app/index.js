@@ -18,20 +18,22 @@ var NgRequireGenerator = yeoman.generators.Base.extend({
   },
 
   askFor: function () {
+    
     var done = this.async();
 
-    // Have Yeoman greet the user.
-    this.log(yosay('Welcome to the marvelous NgRequire generator!'));
+    if (!this.options['skip-welcome-message']) {
+      this.log(yosay('Welcome to the marvelous NgRequire generator!'));
+    }
 
     var prompts = [{
       type: 'confirm',
-      name: 'someOption',
-      message: 'Would you like to enable this option?',
+      name: 'appName',
+      message: 'How would you like to name your application?',
       default: true
     }];
 
     this.prompt(prompts, function (props) {
-      this.someOption = props.someOption;
+      this.appName = props.appName;
 
       done();
     }.bind(this));
@@ -42,8 +44,15 @@ var NgRequireGenerator = yeoman.generators.Base.extend({
     this.mkdir('app/templates');
 
     this.copy('_package.json', 'package.json');
-    this.copy('_bower.json', 'bower.json');
+    this.template("_bower.json", "bower.json", this.appName);
   },
+
+//  scaffoldFolders: function(){
+//    this.mkdir("app");
+//    this.mkdir("app/css");
+//    this.mkdir("app/sections");
+//    this.mkdir("build");
+//}
 
   projectfiles: function () {
     this.copy('editorconfig', '.editorconfig');
