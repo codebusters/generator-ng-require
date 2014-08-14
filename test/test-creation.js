@@ -40,6 +40,18 @@ describe('ng-require generator', function () {
   it('creates expected files', function (done) {
     var expected = [
       // add files you expect to exist here.
+      'app',
+      'app/config',
+      'app/styles',
+      'app/images',
+      'app/scripts',
+      'app/scripts/modules',
+      'app/404.html',
+      'app/favicon.ico',
+      'app/.htaccess',
+      'app/index.html',
+      'app/robots.txt',
+      'app/index.template.html',
       'bower.json',
       '.jshintrc',
       '.editorconfig'

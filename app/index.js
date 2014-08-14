@@ -40,21 +40,42 @@ var NgRequireGenerator = yeoman.generators.Base.extend({
   },
 
   app: function () {
-    this.mkdir('app');
-    this.mkdir('app/templates');
+
+    var context = {
+      appName: this.appName
+    };
 
     this.copy('_package.json', 'package.json');
-    this.template("_bower.json", "bower.json", {appName: this.appName});
+    this.template("_bower.json", "bower.json", context);
   },
 
-//  scaffoldFolders: function(){
-//    this.mkdir("app");
-//    this.mkdir("app/css");
-//    this.mkdir("app/sections");
-//    this.mkdir("build");
-//}
+  scaffoldFolders: function(){
+    this.mkdir('app');
+    // TODO add assert for inner files in test
+    this.directory('_app/_config', 'app/config');
+    // TODO add assert for inner files in test
+    this.directory('_app/_styles', 'app/styles');
+    // TODO add assert for inner files in test
+    this.directory('_app/_images', 'app/images');
+    // TODO add assert for inner files in test
+    this.directory('_app/_scripts', 'app/scripts');
+//    this.mkdir('app/scripts');
+//    this.mkdir('app/scripts/modules');
+  },
 
-  projectfiles: function () {
+  appFiles: function () {
+
+    // TODO for now only copying
+    this.copy('_app/_404.html', 'app/404.html');
+    this.copy('_app/_favicon.ico', 'app/favicon.ico');
+    this.copy('_app/_.htaccess', 'app/.htaccess');
+    this.copy('_app/_index.html', 'app/index.html');
+    this.copy('_app/_robots.txt', 'app/robots.txt');
+    this.copy('_app/_index.template.html', 'app/index.template.html');
+
+  },
+
+  projectFiles: function () {
     this.copy('editorconfig', '.editorconfig');
     this.copy('jshintrc', '.jshintrc');
   }
