@@ -57,6 +57,7 @@ var NgRequireGenerator = yeoman.generators.Base.extend({
     this.copy('_package.json', 'package.json');
 //    this.template('_package.json', 'package.json', context);
     this.copy('_bower.json', 'bower.json');
+    this.copy('_bowerrc', 'bowerrc');
 //    this.template("_bower.json", "bower.json", context);
     this.copy('editorconfig', '.editorconfig');
     this.copy('jshintrc', '.jshintrc');
