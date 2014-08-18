@@ -3,7 +3,7 @@
  define(["angular"], function(angular) {angular.module("AppModule.configuration", [])
 
 .constant("APP_INFO", {
-	"name": "angular-require-seed",
+	"name": "<%= appName %>",
 	"version": "0.0.1"
 })
 

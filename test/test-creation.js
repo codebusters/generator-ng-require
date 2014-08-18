@@ -89,12 +89,12 @@ describe('ng-require generator', function () {
       helpers.assertFileContent('package.json',
         new RegExp('"name": "' + appName + '"')
       );
+      helpers.assertFileContent('app/scripts/configuration.js',
+        new RegExp('"name": "' + appName + '"')
+      );
       
       done();
     });
-
-
-//    assert.fileContent('bower.json', /unitTestApp/);
 
   });
 
