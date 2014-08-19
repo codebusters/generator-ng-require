@@ -1,15 +1,29 @@
 {
   "name": "generator-ng-require",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Yeoman generator",
   "license": "MIT",
   "main": "app/index.js",
-  "repository": "lmiceli/generator-ng-require",
+  "repository": "https://github.com/codebusters/generator-ng-require",
   "author": {
-    "name": "",
-    "email": "",
-    "url": "https://github.com/lmiceli"
+    "name": "codeBusters",
+    "email": "info@codebusters.es",
+    "url": "http://www.codebusters.es"
   },
+  "contributors": [
+    {
+      "name": "Leonardo Miceli",
+      "email": "lmiceli@codebusters.es"
+    },
+    {
+      "name": "Thorsten Scherler",
+      "email": "thorsten@codebusters.es"
+    },
+    {
+      "name": "Jose Figueruela Fernández",
+      "email": "jfigueruela@codebusters.es"
+    }
+  ],
   "engines": {
     "node": ">=0.10.0"
   },
