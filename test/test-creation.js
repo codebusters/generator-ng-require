@@ -31,7 +31,8 @@ describe('ng-require generator', function () {
       });
 
       helpers.mockPrompt(this.app, {
-        'appName': appName
+        'appName': appName,
+        'less' : false
       });
 
       done();
@@ -55,6 +56,7 @@ describe('ng-require generator', function () {
       'app/index.template.html',
       'package.json',
       'bower.json',
+      'bowerrc',
       '.editorconfig',
       '.jshintrc',
       'Gruntfile.js',

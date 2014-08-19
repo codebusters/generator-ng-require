@@ -7,27 +7,26 @@ var chalk = require('chalk');
 
 
 var NgRequireGenerator = yeoman.generators.Base.extend({
-  init: function () {
+  init: function() {
     this.pkg = require('../package.json');
 
-    this.on('end', function () {
+    this.on('end', function() {
 
       this.installDependencies({
         bower: true,
         npm: true,
         skipInstall: this.options['skip-install'],
         skipMessage: this.options['skip-install'],
-        callback: function () {
+        callback: function() {
           console.log('Everything is ready!, just run grunt serve.');
         }
       });
-      
-    });
-    
-  },
 
-  askFor: function () {
-    
+    });
+
+  },
+  askFor: function() {
+
     var done = this.async();
 
     if (!this.options['skip-welcome-message']) {
@@ -35,25 +34,47 @@ var NgRequireGenerator = yeoman.generators.Base.extend({
     }
 
     var prompts = [{
-      type: 'input',
-      name: 'appName',
-      message: 'How would you like to name your application?',
-      default: 'codeBusters'
-    }];
+        type: 'input',
+        name: 'appName',
+        message: 'How would you like to name your application?',
+        default: 'codeBusters'
+      }];
 
-    this.prompt(prompts, function (props) {
+    this.prompt(prompts, function(props) {
       this.appName = props.appName;
 
       done();
     }.bind(this));
   },
+  askForLess: function() {
+    var done = this.async();
 
-  app: function () {
+    this.prompt([{
+        type: 'confirm',
+        name: 'less',
+        message: 'Would you like to use Less?',
+        default: false
+      }], function(props) {
+      this.less = props.less;
 
-//    var context = {
-//      appName: this.appName
-//    };
+      done();
+    }.bind(this));
+  },
+  app: function() {
 
+    var context = {
+      appConfig: {
+        app: 'app',
+        dist: 'dist'
+      },
+      connect: {
+        options: {
+          livereload: {}
+        }
+      },
+      less: this.less,
+      appName: this.appName
+    };
     this.copy('_package.json', 'package.json');
 //    this.template('_package.json', 'package.json', context);
     this.copy('_bower.json', 'bower.json');
@@ -61,13 +82,14 @@ var NgRequireGenerator = yeoman.generators.Base.extend({
 //    this.template("_bower.json", "bower.json", context);
     this.copy('editorconfig', '.editorconfig');
     this.copy('jshintrc', '.jshintrc');
-    this.copy('_gruntfile.js', 'Gruntfile.js');
+//    this.copy('_gruntfile.js', 'Gruntfile.js');
+    this.template('_gruntfile.js', 'Gruntfile.js', context);
+
     this.copy('_karma.conf.js', 'karma.conf.js');
     this.copy('_karma-e2e.conf.js', 'karma-e2e.conf.js');
 
   },
-
-  scaffoldFolders: function(){
+  scaffoldFolders: function() {
     this.mkdir('app');
     // TODO add assert for inner files in test
     this.directory('_app/_config', 'app/config');
@@ -79,8 +101,7 @@ var NgRequireGenerator = yeoman.generators.Base.extend({
     this.directory('_app/_scripts', 'app/scripts');
     this.mkdir('test');
   },
-
-  appFiles: function () {
+  appFiles: function() {
 
     // TODO for now only copying
     this.copy('_app/_404.html', 'app/404.html');
@@ -91,8 +112,7 @@ var NgRequireGenerator = yeoman.generators.Base.extend({
     this.copy('_app/_index.template.html', 'app/index.template.html');
 
   },
-
-  projectFiles: function () {
+  projectFiles: function() {
   }
 });
 
