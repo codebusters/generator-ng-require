@@ -66,6 +66,18 @@ var NgRequireModuleGenerator = yeoman.generators.Base.extend({
       this.angularModuleName
     );
 
+  },
+
+  addToNavigation : function () {
+
+    var mainHtmlFilePath = path.join(this.appPath, 'scripts/modules/main/templates/main.html');
+
+    angularUtils.injectIntoNav(
+      mainHtmlFilePath,
+      "<!-- navAnchor (do not delete!)-->",
+      this.engine("<li><a ng-href=\"#/<%= moduleName %>\" translate=\"<%= moduleName %>\"></a></li>\n", this)
+    );
+
   }
 
 });

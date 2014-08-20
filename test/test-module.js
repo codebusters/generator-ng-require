@@ -108,6 +108,11 @@ describe('ng-require:module generator', function () {
         new RegExp('\'TestModule\'')
       );
 
+      // navigation
+      helpers.assertFileContent('app/scripts/modules/main/templates/main.html',
+        new RegExp('<li><a ng-href="#/test" translate="test"></a></li>\\s*<!-- navAnchor \\(do not delete!\\)-->')
+      );
+
       done();
     });
 

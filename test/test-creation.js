@@ -77,12 +77,14 @@ describe('ng-require generator', function () {
       helpers.assertFileContent('bower.json',
         new RegExp('"name": "' + appName + '"')
       );
-
       helpers.assertFileContent('package.json',
         new RegExp('"name": "' + appName + '"')
       );
       helpers.assertFileContent('app/scripts/configuration.js',
         new RegExp('"name": "' + appName + '"')
+      );
+      helpers.assertFileContent('app/scripts/modules/main/templates/main.html',
+        new RegExp('<!-- navAnchor \\(do not delete!\\)-->')
       );
       
       done();

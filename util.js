@@ -8,7 +8,8 @@ module.exports = {
   rewrite: rewrite,
   rewriteFile: rewriteFile,
   appName: appName,
-  injectIntoFile: injectIntoFile
+  injectIntoFile: injectIntoFile,
+  injectIntoNav: injectIntoNav
 };
 
 function rewriteFile (args) {
@@ -59,6 +60,22 @@ function injectIntoFile (appPath, moduleName, injectedModuleName) {
 
     rewriteFile(config);
   }
+}
+
+/*TODO, make this more generic in order to share more code with injectIntoFile*/
+function injectIntoNav (mainHtmlFilePath, needle, navItemHtml) {
+  // TODO: check if not exists
+  // Set up config object
+
+  var config = {
+    file: mainHtmlFilePath,
+    needle: needle,
+    splicable: [navItemHtml],
+    spliceWithinLine: true
+  };
+
+  rewriteFile(config);
+
 }
 
 function escapeRegExp (str) {
