@@ -94,7 +94,6 @@ var NgRequireGenerator = yeoman.generators.Base.extend({
     // TODO add assert for inner files in test
     this.directory('_app/_config', 'app/config');
     // TODO add assert for inner files in test
-//    this.directory('_app/_styles', 'app/styles');
     this.mkdir('app/styles');
     // TODO add assert for inner files in test
     this.directory('_app/_images', 'app/images');
