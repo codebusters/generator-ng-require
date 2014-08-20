@@ -32,7 +32,7 @@ describe('ng-require generator', function () {
 
       helpers.mockPrompt(this.app, {
         'appName': appName,
-        'less' : false
+        'less' : true
       });
 
       done();

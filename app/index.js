@@ -94,7 +94,8 @@ var NgRequireGenerator = yeoman.generators.Base.extend({
     // TODO add assert for inner files in test
     this.directory('_app/_config', 'app/config');
     // TODO add assert for inner files in test
-    this.directory('_app/_styles', 'app/styles');
+//    this.directory('_app/_styles', 'app/styles');
+    this.mkdir('app/styles');
     // TODO add assert for inner files in test
     this.directory('_app/_images', 'app/images');
     // TODO add assert for inner files in test
@@ -102,7 +103,6 @@ var NgRequireGenerator = yeoman.generators.Base.extend({
     this.mkdir('test');
   },
   appFiles: function() {
-
     // TODO for now only copying
     this.copy('_app/_404.html', 'app/404.html');
     this.copy('_app/_favicon.ico', 'app/favicon.ico');
@@ -110,7 +110,12 @@ var NgRequireGenerator = yeoman.generators.Base.extend({
     this.copy('_app/_index.html', 'app/index.html');
     this.copy('_app/_robots.txt', 'app/robots.txt');
     this.copy('_app/_index.template.html', 'app/index.template.html');
-
+    //Copy style file
+    if(this.less) {
+      this.copy('_app/_styles/main.less', 'app/styles/main.less');
+    }else {
+      this.copy('_app/_styles/main.css', 'app/styles/main.css');
+    }
   },
   projectFiles: function() {
   }
