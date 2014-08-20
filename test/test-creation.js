@@ -24,7 +24,8 @@ describe('ng-require generator', function () {
 
       helpers.mockPrompt(this.app, {
         'appName': appName,
-        'less' : true
+        'less' : true,
+        'seo' : true
       });
 
       done();
@@ -43,7 +44,6 @@ describe('ng-require generator', function () {
       'app/404.html',
       'app/favicon.ico',
       'app/.htaccess',
-      'app/index.html',
       'app/robots.txt',
       'app/index.template.html',
       'package.json',
@@ -86,12 +86,10 @@ describe('ng-require generator', function () {
       helpers.assertFileContent('app/scripts/modules/main/templates/main.html',
         new RegExp('<!-- navAnchor \\(do not delete!\\)-->')
       );
-      
       done();
     });
 
   });
-
 
 
 });

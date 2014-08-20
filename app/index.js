@@ -5,34 +5,33 @@ var yeoman = require('yeoman-generator');
 var yosay = require('yosay');
 var chalk = require('chalk');
 
-
+var context = {};
 var NgRequireGenerator = yeoman.generators.Base.extend({
   init: function() {
     this.pkg = require('../package.json');
 
     this.on('end', function() {
-
       this.installDependencies({
         bower: true,
         npm: true,
         skipInstall: this.options['skip-install'],
         skipMessage: this.options['skip-install'],
         callback: function() {
-          console.log(chalk.bold.yellow('Everything is ready!, just run grunt serve.'));
+          console.log(chalk.bold.green('\nEverything is ready!, just run')
+                  + chalk.bold.yellow(' grunt serve.'));
         }
       });
-
     });
-
   },
   askFor: function() {
 
     var done = this.async();
-    
+
     if (!this.options['skip-welcome-message']) {
       this.log(yosay('Welcome to the marvelous NgRequire generator!'));
     }
-    console.log('\t\t\t' + chalk.bold.white('code') + chalk.bold.red('Busters') + chalk.bold.white(' S.L.') + '\n\n');
+    console.log('\t\t\t' + chalk.bold.white('code') + chalk.bold.red('Busters')
+            + chalk.bold.white(' S.L.') + '\n\n');
     var prompts = [{
         type: 'input',
         name: 'appName',
@@ -60,8 +59,43 @@ var NgRequireGenerator = yeoman.generators.Base.extend({
       done();
     }.bind(this));
   },
+  askForSEO: function() {
+    var done = this.async();
+    context = {
+      'indexTitle': '',
+      'indexDescription': ''
+    };
+    this.prompt([{
+        type: 'confirm',
+        name: 'seo',
+        message: 'Would you like to configure basic SEO data?',
+        default: true
+      }], function(props) {
+      this.seo = props.seo;
+      if (this.seo) {
+        var questions = [
+          {
+            type: "input",
+            name: "indexTitle",
+            message: "Enter index title"
+          },
+          {
+            type: "input",
+            name: "indexDescription",
+            message: "Enter index description"
+          }
+        ];
+        this.prompt(questions, function(answers) {
+          context.indexTitle = answers.indexTitle;
+          context.indexDescription = answers.indexDescription;
+          done();
+        });
+      } else {
+        done();
+      }
+    }.bind(this));
+  },
   app: function() {
-
     var context = {
       appConfig: {
         app: 'app',
@@ -81,7 +115,6 @@ var NgRequireGenerator = yeoman.generators.Base.extend({
     this.copy('editorconfig', '.editorconfig');
     this.copy('jshintrc', '.jshintrc');
     this.template('_gruntfile.js', 'Gruntfile.js', context);
-
     this.copy('_karma.conf.js', 'karma.conf.js');
     this.copy('_karma-e2e.conf.js', 'karma-e2e.conf.js');
 
@@ -103,13 +136,13 @@ var NgRequireGenerator = yeoman.generators.Base.extend({
     this.copy('_app/_404.html', 'app/404.html');
     this.copy('_app/_favicon.ico', 'app/favicon.ico');
     this.copy('_app/htaccess', 'app/.htaccess');
-    this.copy('_app/_index.html', 'app/index.html');
     this.copy('_app/_robots.txt', 'app/robots.txt');
-    this.copy('_app/_index.template.html', 'app/index.template.html');
+
+    this.template('_app/_index.template.html', 'app/index.template.html', context);
     //Copy style file
-    if(this.less) {
+    if (this.less) {
       this.copy('_app/_styles/main.less', 'app/styles/main.less');
-    }else {
+    } else {
       this.copy('_app/_styles/main.css', 'app/styles/main.css');
     }
   },
