@@ -8,14 +8,6 @@ describe('ng-require generator', function () {
   var appName = 'unitTestApp';
   var deps = [
     '../../app'
-//    ,
-//    '../../../common',
-//    '../../../controller',
-//    '../../../main',
-//    [
-//      helpers.createDummyGenerator(),
-//      'karma-require:app'
-//    ]
   ];
 
   beforeEach(function (done) {
@@ -80,8 +72,6 @@ describe('ng-require generator', function () {
 */
   it('applies appName to files', function (done) {
 
-//    console.log('hello!');
-    
     this.app.run({}, function () {
 
       helpers.assertFileContent('bower.json',

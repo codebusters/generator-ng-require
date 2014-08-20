@@ -3,8 +3,13 @@
 var assert = require('assert');
 
 describe('ng-require generator', function () {
-  it('can be imported without blowing up', function () {
+  it('app can be imported without blowing up', function () {
     var app = require('../app');
     assert(app !== undefined);
+  });
+
+  it('module can be imported without blowing up', function () {
+    var module = require('../module');
+    assert(module !== undefined);
   });
 });
