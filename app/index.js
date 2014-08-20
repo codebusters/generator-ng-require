@@ -18,7 +18,7 @@ var NgRequireGenerator = yeoman.generators.Base.extend({
         skipInstall: this.options['skip-install'],
         skipMessage: this.options['skip-install'],
         callback: function() {
-          console.log('Everything is ready!, just run grunt serve.');
+          console.log(chalk.bold.yellow('Everything is ready!, just run grunt serve.'));
         }
       });
 
@@ -28,11 +28,11 @@ var NgRequireGenerator = yeoman.generators.Base.extend({
   askFor: function() {
 
     var done = this.async();
-
+    
     if (!this.options['skip-welcome-message']) {
       this.log(yosay('Welcome to the marvelous NgRequire generator!'));
     }
-
+    console.log('\t\t\t' + chalk.bold.white('code') + chalk.bold.red('Busters') + chalk.bold.white(' S.L.') + '\n\n');
     var prompts = [{
         type: 'input',
         name: 'appName',
@@ -69,7 +69,7 @@ var NgRequireGenerator = yeoman.generators.Base.extend({
       },
       connect: {
         options: {
-          livereload: {}
+          livereload: '<%= connect.options.livereload %>'
         }
       },
       less: this.less,
