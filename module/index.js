@@ -75,7 +75,7 @@ var NgRequireModuleGenerator = yeoman.generators.Base.extend({
     angularUtils.injectIntoNav(
       mainHtmlFilePath,
       "<!-- navAnchor (do not delete!)-->",
-      this.engine("<li><a ng-href=\"#/<%= moduleName %>\" translate=\"<%= moduleName %>\"></a></li>\n", this)
+      this.engine("<li ng-class=\"{ active: menuCtrl.isSelected('<%= moduleName %>') }\"><a ng-click=\"menuCtrl.selectMenu('<%= moduleName %>')\" ng-href=\"#/<%= moduleName %>\" translate=\"<%= moduleName %>\"></a></li>\n", this)
     );
 
   }

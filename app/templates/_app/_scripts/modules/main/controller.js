@@ -28,4 +28,22 @@ define([
       $scope.appInfo = APP_INFO;
     }]);
 
+  module.controller('MainMenuController', [
+    '$scope',
+    function(
+            $scope
+            )
+    {
+      this.menu = 'HOME';
+      this.selectMenu = function(setMenu) {
+        this.menu = setMenu;
+      };
+      this.isSelected = function(checkTab) {
+        return this.menu === checkTab;
+      };
+      this.getMenuSelected = function() {
+        return this.menu;
+      };
+    }]);
+
 });
