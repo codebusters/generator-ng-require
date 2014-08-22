@@ -25,7 +25,8 @@ describe('ng-require generator', function () {
       helpers.mockPrompt(this.app, {
         'appName': appName,
         'less' : true,
-        'seo' : true
+        'seo' : true,
+        'theme': "snow"
       });
 
       done();

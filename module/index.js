@@ -78,6 +78,10 @@ var NgRequireModuleGenerator = yeoman.generators.Base.extend({
       this.engine("<li ng-class=\"{ active: menuCtrl.isSelected('<%= moduleName %>') }\"><a ng-click=\"menuCtrl.selectMenu('<%= moduleName %>')\" ng-href=\"#/<%= moduleName %>\" translate=\"<%= moduleName %>\"></a></li>\n", this)
     );
 
+    if (!this.options['avoid-info']) {
+      this.log('All done, a link has been added to navigation bar, please add corresponding translations to files in app/scripts/modules/lang/translations/');
+    }
+
   }
 
 });

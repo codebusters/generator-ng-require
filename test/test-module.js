@@ -21,12 +21,14 @@ describe('ng-require:module generator', function () {
       });
 
       helpers.mockPrompt(this.app, {
-        'appName': appName
+        'appName': appName,
+        'theme': "snow"
       });
 
       this.module = helpers.createGenerator('ng-require:module', ['../../module'], [], {
         'appPath': '../../module',
-        'skip-welcome-message': true
+        'skip-welcome-message': true,
+        'avoid-info': true
       });
 
       helpers.mockPrompt(this.module, {
@@ -59,8 +61,6 @@ describe('ng-require:module generator', function () {
   });
 
   it('module applies moduleName to files', function (done) {
-
-//    console.log('hello!');
 
     this.module.run({}, function () {
 
@@ -110,7 +110,7 @@ describe('ng-require:module generator', function () {
 
       // navigation
       helpers.assertFileContent('app/scripts/modules/main/templates/main.html',
-        new RegExp('<li><a ng-href="#/test" translate="test"></a></li>\\s*<!-- navAnchor \\(do not delete!\\)-->')
+        new RegExp('<li ng-class="{ active: menuCtrl\\.isSelected\\(\'test\'\\) }">\\s*<a ng-click="menuCtrl\\.selectMenu\\(\'test\'\\)" ng-href="#/test" translate="test"></a></li>\\s*<!-- navAnchor \\(do not delete!\\)-->')
       );
 
       done();
