@@ -1,7 +1,8 @@
-/* Space out content a bit */
+/* Space out content a bit STARK*/
 body {
   padding-top: 20px;
   padding-bottom: 20px;
+  background-color: gainsboro;
 }
 
 /* Everything but the jumbotron gets side spacing for mobile first views */

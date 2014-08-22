@@ -29,9 +29,11 @@ var NgRequireGenerator = yeoman.generators.Base.extend({
 
     if (!this.options['skip-welcome-message']) {
       this.log(yosay('Welcome to the marvelous NgRequire generator!'));
+      //codeBusters brand.
+      console.log('\t\t\t' + chalk.bold.white('code') + chalk.bold.red('Busters')
+              + chalk.bold.white(' S.L.') + '\n\n');
     }
-    console.log('\t\t\t' + chalk.bold.white('code') + chalk.bold.red('Busters')
-            + chalk.bold.white(' S.L.') + '\n\n');
+
     var prompts = [{
         type: 'input',
         name: 'appName',
@@ -95,6 +97,24 @@ var NgRequireGenerator = yeoman.generators.Base.extend({
       }
     }.bind(this));
   },
+  askForTheme: function() {
+    var done = this.async();
+    var prompts = [
+      {
+        type: "list",
+        name: "theme",
+        message: "Choose theme",
+        choices: ["Snow", "Stark"],
+        filter: function(val) {
+          return val.toLowerCase();
+        }
+      }
+    ];
+    this.prompt(prompts, function(props) {
+      this.theme = props.theme;
+      done();
+    }.bind(this));
+  },
   app: function() {
     var context = {
       appConfig: {
@@ -141,9 +161,9 @@ var NgRequireGenerator = yeoman.generators.Base.extend({
     this.template('_app/_index.template.html', 'app/index.template.html', context);
     //Copy style file
     if (this.less) {
-      this.copy('_app/_styles/main.less', 'app/styles/main.less');
+      this.copy('_app/_styles/'+this.theme+'.less', 'app/styles/main.less');
     } else {
-      this.copy('_app/_styles/main.css', 'app/styles/main.css');
+      this.copy('_app/_styles/'+this.theme+'.css', 'app/styles/main.css');
     }
   },
   projectFiles: function() {
