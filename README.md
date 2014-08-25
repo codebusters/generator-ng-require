@@ -10,6 +10,8 @@
 Trick question. It's not a thing. It's this guy:
 
 ![](http://i.imgur.com/JHaAlBJ.png)
+![](http://www.codebusters.es/assets/logo.png)
+
 
 Basically, he wears a top hat, lives in your computer, and waits for you to tell him what kind of application you wish to create.
 
