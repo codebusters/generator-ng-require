@@ -43,13 +43,13 @@ require.config({
       'angular'
     ],
     'angular-translate-loader-static-files': [
-      'angular'
+      'angular','angular-translate-storage-local'
     ],
     'angular-translate-storage-local': [
       'angular'
     ],
     'angular-translate-storage-cookie': [
-      'angular'
+      'angular','angular-translate-storage-local'
     ],
     'angular-mocks': {
       deps: [

@@ -6,7 +6,6 @@ define([
   var module = angular.module('LangModule',
           [
             'pascalprecht.translate',
-            'ngCookies',
             'Lang.directive'
           ]);
   module.config(['$translateProvider', function($translateProvider) {
