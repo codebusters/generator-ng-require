@@ -1,15 +1,16 @@
-# generator-ng-require [![Build Status](https://secure.travis-ci.org/lmiceli/generator-ng-require.png?branch=master)](https://travis-ci.org/lmiceli/generator-ng-require)
+# generator-ng-require
 
-> [Yeoman](http://yeoman.io) generator
 
+![](http://www.codebusters.es/assets/resources/generator-ng-require.png)
+
+
+Yeoman generator for AngularJS using RequireJS - lets you quickly set up a project with sensible defaults and best practices.
 
 ## Getting Started
 
 ### What is Yeoman?
 
 Trick question. It's not a thing. It's this guy:
-
-![](http://www.codebusters.es/assets/resources/generator-ng-require.png)
 
 
 Basically, he wears a top hat, lives in your computer, and waits for you to tell him what kind of application you wish to create.
@@ -46,3 +47,5 @@ If you'd like to get to know Yeoman better and meet some of his friends, [Grunt]
 ## License
 
 MIT
+
+> [codeBusters](http://wwww.codebusters.es)
