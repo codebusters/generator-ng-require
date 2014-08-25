@@ -46,7 +46,7 @@ require.config({
       'angular','angular-translate-storage-local'
     ],
     'angular-translate-storage-local': [
-      'angular'
+      'angular','angular-translate'
     ],
     'angular-translate-storage-cookie': [
       'angular','angular-translate-storage-local'
@@ -59,7 +59,7 @@ require.config({
     }
   },
   priority: [
-    'angular'
+    'angular','angular-translate-loader-static-files'
   ],
   packages: [
 

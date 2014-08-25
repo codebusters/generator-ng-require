@@ -22,11 +22,6 @@ define([
     $scope.changeLang = function(key) {
       $translate.use(key);
     };
-    $rootScope.$on('$translateChangeSuccess', function() {
-      $scope.currentStack = $translate.fallbackLanguage();
-      $scope.currentPref = $translate.preferredLanguage();
-      $scope.currentLang = $translate.use();
-    });
   });
 
   /**
